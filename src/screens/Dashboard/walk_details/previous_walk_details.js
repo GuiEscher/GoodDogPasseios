@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../../components/header'; // Assumindo que você tenha o componente Header
-import '../../App.css';
-import './css/details.css'; // Caminho do arquivo CSS
+import Header from '../../../components/header';
+import '../../../App.css';
+import './details.css';
 
-const NextWalkDetails = () => {
-  const { id } = useParams(); // Pega o 'id' da URL
+const PreviousWalkDetails = () => {
+  const { id } = useParams();  // Pega o 'id' da URL
   const [walkDetails, setWalkDetails] = useState(null);
 
   useEffect(() => {
-    // Aqui a URL é de onde os dados dos passeios agendados podem ser buscados
-    fetch('http://localhost:5000/nextwalks')
-      .then((response) => response.json())
-      .then((data) => {
-        const walk = data.find((w) => w.id === parseInt(id)); // Filtra pelo id
-        setWalkDetails(walk);
-      })
-      .catch((error) => console.error('Error fetching walk details:', error));
+    fetch('http://localhost:5000/previouswalks')
+        .then(response => response.json())
+        .then(data => {
+            const walk = data.find(w => w.id === parseInt(id)); // Filtra pelo id
+            setWalkDetails(walk);
+        })
+        .catch(error => console.error('Error fetching walk details:', error));
   }, [id]);
 
   if (!walkDetails) {
-    return <div>Loading...</div>; // Exibe uma mensagem enquanto os dados estão sendo carregados
+    return <div>Loading...</div>;  // Exibe uma mensagem enquanto os dados estão sendo carregados
   }
 
   return (
@@ -30,7 +29,7 @@ const NextWalkDetails = () => {
         <div className="content">
           <div className="details-sections">
             <div className="details-div">
-              <a href="/nextwalks" className="return-button">&lt; Voltar</a>
+              <a href="/previouswalks" className="return-button">&lt; Voltar</a>
 
               <h1>Detalhes do passeio</h1>
               <p>Nome do Cachorro: {walkDetails.name}</p>
@@ -57,18 +56,15 @@ const NextWalkDetails = () => {
             </div>
 
             <div className="details-div">
-              <img
-                src={walkDetails.walker_details.image}
-                alt="Foto do passeador"
-                className="walker-image"
-              />
+              {/* Referência à URL da imagem do passeador */}
+              <img src={walkDetails.walker_details.image} alt="Foto do passeador" className="walker-image" />
             </div>
           </div>
 
           <div className="details-buttons">
-            <a className="details-button">Solicitar alteração</a>
-            <a className="details-button">Conversar</a>
-            <a className="details-button-cancel">Cancelar</a>
+            <a className="details-button">Informar problema</a>
+            <a className="details-button">Avaliar passeio</a>
+            <a className="details-button">Dar gorjeta</a>
           </div>
         </div>
       </div>
@@ -76,4 +72,4 @@ const NextWalkDetails = () => {
   );
 };
 
-export default NextWalkDetails;
+export default PreviousWalkDetails;

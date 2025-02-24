@@ -4,8 +4,8 @@
       "id": 1,
       "name": "Rabixo",
       "caregiver": "Jurandir",
-      "distance": "5 km",
-      "price": "R$ 60,00",
+      "distance": "4.5 km",
+      "price": "R$ 50,00",
       "date": "24/02/2025",
       "time": "18:00",
       "end_time": "19:00",
@@ -26,7 +26,7 @@
       "id": 2,
       "name": "Pelotas",
       "caregiver": "Marilde",
-      "distance": "5 km",
+      "distance": "5.5 km",
       "price": "R$ 60,00",
       "date": "26/02/2025",
       "time": "15:00",
@@ -48,8 +48,8 @@
       "id": 3,
       "name": "Bibinho",
       "caregiver": "Márcio",
-      "distance": "5 km",
-      "price": "R$ 60,00",
+      "distance": "7 km",
+      "price": "R$ 70,00",
       "date": "27/02/2025",
       "time": "19:00",
       "end_time": "20:00",
@@ -72,7 +72,7 @@
       "id": 1,
       "name": "Rabixo",
       "caregiver": "Jurandir",
-      "distance": "5 km",
+      "distance": "6 km",
       "price": "R$ 60,00",
       "date": "30/02/2025",
       "time": "18:00",
@@ -95,7 +95,7 @@
       "name": "Pelotas",
       "caregiver": "Marilde",
       "distance": "5 km",
-      "price": "R$ 60,00",
+      "price": "R$ 55,00",
       "date": "01/03/2025",
       "time": "15:00",
       "end_time": "16:00",
@@ -116,8 +116,8 @@
       "id": 3,
       "name": "Bibinho",
       "caregiver": "Márcio",
-      "distance": "5 km",
-      "price": "R$ 60,00",
+      "distance": "4 km",
+      "price": "R$ 45,00",
       "date": "05/03/2025",
       "time": "19:00",
       "end_time": "20:00",
@@ -133,6 +133,19 @@
         "description": "Especialista em raças pequenas",
         "image": "https://static.vecteezy.com/ti/fotos-gratis/t1/5890017-feliz-jovem-negro-sorrindo-em-fundo-urbano-foto.jpg"
       }
+    }
+  ], 
+  "inexecution": [
+    {
+      "dogName": "Jubileu",
+      "dogDetails": "Pastor alemão, agitado",
+      "date": "28/11/2024",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "walker": "Jurandir",
+      "distance": "4km",
+      "price": "R$ 60,00",
+      "location": [-21.9810, -47.8795]
     }
   ]
 }
