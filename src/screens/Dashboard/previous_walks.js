@@ -50,7 +50,7 @@ const PreviousWalks = () => {
               <tbody>
                 {walks.map((walk) => (
                   <tr key={walk.id}>
-                    <td><Link to={`/walks/${walk.id}`} className="row-link">{walk.name}</Link></td>
+                    <td><Link to={`/previous_walk_details/${walk.id}`} className="row-link">{walk.name}</Link></td>
                     <td className="disposable-column">{walk.caregiver}</td>
                     <td className="disposable-column">{walk.distance}</td>
                     <td className="less-disposable-column">{walk.price}</td>

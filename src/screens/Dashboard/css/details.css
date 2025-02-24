@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap');
+
+/* Configurações globais */
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #926B96 ;
+    font-family: 'Red Hat Text', sans-serif;
+}
+
+/* Estilos do cabeçalho */
+header {
+    background-color: #f8f4ff;
+    padding: 10px 20px;
+    border-bottom: 2px solid #a37ddc;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2A2D54;
+    text-decoration: none; 
+}
+
+.logout{
+    color: #995577;
+    border: #995577;
+    border-radius: 12px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #2A2D54;
+}
+
+.nav-links a:hover {
+    color: #a37ddc; 
+}
+
+/* Estilos da seção principal */
+.main {
+    height: auto; 
+    padding-bottom: 16px;
+}
+
+.content {
+    background-color: #FAFAFA;
+    margin: 32px;
+    padding: 32px;
+    border-radius: 12px;
+}
+
+.return-button {
+    text-decoration: none; /* Remove qualquer sublinhado ou decoração do link */
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+
+.details-sections {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    width: 100%; 
+    gap: 16px; /* Espaço entre as colunas */
+    border-radius: 12px; 
+    background-color: #E7D7E9; 
+    margin-bottom: 32px;
+}
+
+.details-div {
+    flex: 1; /* Colunas com tamanho igual */
+    min-width: 200px; /* Define um tamanho mínimo para as colunas */
+    align-items: center; 
+    padding: 32px; 
+    font-size: 16px; 
+    font-weight: 600; 
+    overflow: hidden;
+}
+
+.details-sections > div:last-child {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    font-size: 24px;
+    padding: 0%;
+}
+
+.details-p {
+    width: 100%; 
+    box-sizing: border-box; 
+    padding: 16px; 
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* Compatibilidade para garantir quebra de palavras em navegadores antigos */
+    word-break: break-word; /* Quebra palavras longas em linhas */
+}
+
+.walker-image {
+    width: 100%; 
+    max-width: 200px; /* Define a largura máxima da imagem */
+    height: 100%; /* Ajusta a altura de forma proporcional */
+    max-height: 200px;
+    border-radius: 50%; /* Faz a imagem ficar circular */
+    object-fit: cover; /* Garante que a imagem fique proporcional e preencha o espaço */
+    display: block; 
+}
+
+
+.details-buttons {
+    display: grid; /* Usa grid layout para organizar os botões */
+    grid-template-columns: repeat(3, 1fr); /* Divide em 3 colunas de tamanho igual */
+    gap: 16px; 
+    padding: 16px; 
+    justify-content: center
+}
+
+.details-button {
+    flex: 0 0 60%; /* Cada botão ocupa 60% do espaço disponível da linha */
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    border-radius: 8px; 
+    border: none; 
+    background-color: #926B96; 
+    color: white; 
+    cursor: pointer; 
+    text-align: center; 
+}
+
+.details-button-cancel {
+    flex: 0 0 60%;
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    border-radius: 8px; 
+    border: none; 
+    background-color: #995577;
+    color: white; 
+    cursor: pointer; 
+    text-align: center; 
+}
+
+.details-button:hover {
+    background-color: #834866; 
+}
+
+@media screen and (max-width: 600px) {
+    .details-buttons {
+        grid-template-columns: 1fr;
+    }
+    .walker-image {margin-bottom: 32px; min-height: 200px;}
+
+}
+
+@media screen and (max-width: 500px) {
+    .site-name {
+        display: none; /* Oculta o nome do site */
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .selected-tab {
+        padding: 16px;
+    }
+}
