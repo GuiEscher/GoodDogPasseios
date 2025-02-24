@@ -109,19 +109,20 @@ nav {
     font-size: 16px;
 }
 
-.details-buttons {
+.in-exec-details-button {
     display: grid; /* Usa grid layout para organizar os botões */
     grid-template-columns: 1fr; /* Divide os botões em uma única coluna */
     gap: 16px; 
     justify-content: center;
 }
 
-.details-button {
+.in-exec-details-button {
     flex: 0 0 100%; 
     padding: 10px 20px; 
     font-size: 16px; 
     font-weight: 600; 
-    border-radius: 8px; 
+    border-radius: 8px;
+    margin-bottom: 16px; 
     background-color: #926B96; 
     color: white; 
     cursor: pointer; 
@@ -129,7 +130,7 @@ nav {
     text-decoration: none;
 }
 
-.details-button:hover {
+.in-exec-details-button:hover {
     background-color: #834866;
 }
 

@@ -70,9 +70,9 @@ const InExecution = () => {
             <p>Valor: {walkDetails.price}</p>
           </div>
 
-          <div className="details-buttons">
-            <a href="#message" className="details-button">Enviar mensagem</a>
-            <a href="#problem_report" className="details-button">Reportar problema</a>
+          <div className="in-exec-details-buttons">
+            <a href="#message" className="in-exec-details-button">Enviar mensagem</a>
+            <a href="#problem_report" className="in-exec-details-button">Reportar problema</a>
           </div>
         </div>
 
