@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+
+  const isLoginOrRegister = location.pathname === '/login' || location.pathname === '/register';
+
   return (
     <header>
       <nav>
@@ -10,7 +14,9 @@ const Header = () => {
           <Link to="/" className="site-name">GoodDog Passeios</Link>
         </div>
         <ul className="nav-links">
+          {!isLoginOrRegister && <li><Link to="/nextwalks">Seus Passeios</Link></li>}
           <li><Link to="/#sobre">Sobre</Link></li>
+          {!isLoginOrRegister && <li><Link to="/">Logout</Link></li>}
         </ul>
       </nav>
     </header>

@@ -5,12 +5,12 @@ import Header from '../../components/header';
 import '../../App.css';
 import './next_walks.css';
 
-const NextWalks = () => {
+const PreviousWalks = () => {
   const [walks, setWalks] = useState([]);
 
   useEffect(() => {
     // Buscar dados do json-server
-    axios.get('http://localhost:5000/nextwalks')
+    axios.get('http://localhost:5000/previouswalks')
       .then((response) => {
         setWalks(response.data); // Atualiza o estado com os dados dos passeios
       })
@@ -30,8 +30,8 @@ const NextWalks = () => {
               <button className="search-button"><img src="/assets/searchicon.png" alt="Buscar" width="24" height="24" /></button>
             </div>
             <Link to='/dashboard/register_walk' className="general-button">Agendar passeio</Link>
-            <Link to='/nextwalks' className="tab-button active">Próximos</Link>
-            <Link to='/previouswalks' className="tab-button">Anteriores</Link>
+            <Link to='/nextwalks' className="tab-button">Próximos</Link>
+            <Link to='/previouswalks' className="tab-button active">Anteriores</Link>
             <Link to='/dashboard/in_execution' className="tab-button">Em andamento</Link>
           </div>
 
@@ -67,4 +67,4 @@ const NextWalks = () => {
   );
 };
 
-export default NextWalks;
+export default PreviousWalks;

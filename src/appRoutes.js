@@ -4,6 +4,7 @@ import Home from './screens/Home/home';
 import Login from './screens/Login/login';
 import Register from './screens/Register/register'; // Importe a tela de cadastro
 import NextWalks from './screens/Dashboard/next_walks';
+import PreviousWalks from './screens/Dashboard/previous_walks';
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} /> {/* Rota para a página de login */}
         <Route path="/register" element={<Register />} /> {/* Rota para a página de cadastro */}
         <Route path="/nextwalks" element={<NextWalks />} /> {/* Rota para a página de next walks */}
+        <Route path="/previouswalks" element={<PreviousWalks />} /> {/* Rota para a página de previous walks */}
       </Routes>
     </Router>
   );
