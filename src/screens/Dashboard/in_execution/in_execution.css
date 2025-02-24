@@ -151,7 +151,7 @@ nav {
     }
 
     #mapid {
-        height: 300px; /* Define uma altura fixa para o mapa em telas menores */
+        max-height: 400px; /* Define uma altura fixa para o mapa em telas menores */
         margin-top: 16px; /* Adiciona um espaço entre os blocos */
     }
 }
