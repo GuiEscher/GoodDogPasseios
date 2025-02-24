@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../../../components/header';
-import '../../../App.css';
-import styles from './in_execution.module.css'; // Importando o CSS Module
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css'; // O CSS do Leaflet ainda é necessário, mas será isolado no contêiner
+import './in_execution.css'; // Importando o CSS Module
 
 const InExecution = () => {
   const [walkDetails, setWalkDetails] = useState(null);
@@ -39,7 +38,7 @@ const InExecution = () => {
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; OpenStreetMap contributors',
-        maxZoom: 18,
+        maxZoom: 20,
       }).addTo(map);
 
       L.marker([latitude, longitude]).addTo(map);
@@ -54,31 +53,32 @@ const InExecution = () => {
     <div>
       <Header />
       <div className="dashboard-container">
-        <div className="content">
-          <div className="details">
-            <div className="walk-details">
-              <a href="/previouswalks" className="return-button">
-                &lt; Voltar
-              </a>
-              <h1>Detalhes do passeio</h1>
-              <p>Nome do Cachorro: {walkDetails.dogName}</p>
-              <p>Características: {walkDetails.dogDetails}</p>
-              <p>Data: {walkDetails.date}</p>
-              <p>Horário de Início: {walkDetails.startTime}</p>
-              <p>Horário para término: {walkDetails.endTime}</p>
-              <p>Passeador: {walkDetails.walker}</p>
-              <p>Distância solicitada: {walkDetails.distance}</p>
-              <p>Valor: {walkDetails.price}</p>
-            </div>
-
-            <div className="details-buttons">
-              <a href="#message" className="details-button">Enviar mensagem</a>
-              <a href="#problem_report" className="details-button">Reportar problema</a>
-            </div>
+      <div className="walk-content">
+        <div className="full-walk-details">
+          <div className="walk-details">
+            <a href="/previouswalks" className="return-button">
+              &lt; Voltar
+            </a>
+            <h1>Detalhes do passeio</h1>
+            <p>Nome do Cachorro: {walkDetails.dogName}</p>
+            <p>Características: {walkDetails.dogDetails}</p>
+            <p>Data: {walkDetails.date}</p>
+            <p>Horário de Início: {walkDetails.startTime}</p>
+            <p>Horário para término: {walkDetails.endTime}</p>
+            <p>Passeador: {walkDetails.walker}</p>
+            <p>Distância solicitada: {walkDetails.distance}</p>
+            <p>Valor: {walkDetails.price}</p>
           </div>
 
-          <div id="mapid" className={styles.mapContainer}></div> {/* Usando a classe do CSS Module */}
+          <div className="details-buttons">
+            <a href="#message" className="details-button">Enviar mensagem</a>
+            <a href="#problem_report" className="details-button">Reportar problema</a>
+          </div>
         </div>
+
+        <div id="mapid" style={{ height: '400px', }}></div>
+      </div>
+
       </div>
     </div>
   );
