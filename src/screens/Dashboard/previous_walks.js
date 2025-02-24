@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../../components/header';
 import '../../App.css';
-import './next_walks.css';
+import './css/next_walks.css';
 
 const PreviousWalks = () => {
   const [walks, setWalks] = useState([]);
