@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import AppRoutes from './appRoutes'; // Importe o arquivo de rotas
+import './App.css'; // Importe os estilos globais
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Renderize o AppRoutes */}
+      <AppRoutes />
     </div>
   );
 }
 
+// Exporte o componente App como padrão
 export default App;
