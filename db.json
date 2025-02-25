@@ -1,13 +1,151 @@
 {
-    "previouswalks": [
-      { "id": 1, "name": "Rabixo", "caregiver": "Jurandir", "distance": "5 km", "price": "R$ 60,00", "date": "24/02/2025", "time": "18:00" },
-      { "id": 2, "name": "Pelotas", "caregiver": "Marilde", "distance": "5 km", "price": "R$ 60,00", "date": "26/02/2025", "time": "15:00" },
-      { "id": 3, "name": "Bibinho", "caregiver": "Márcio", "distance": "5 km", "price": "R$ 60,00", "date": "27/02/2025", "time": "19:00" }
-    ],
-    "nextwalks": [
-      { "id": 1, "name": "Rabixo", "caregiver": "Jurandir", "distance": "5 km", "price": "R$ 60,00", "date": "30/02/2025", "time": "18:00" },
-      { "id": 2, "name": "Pelotas", "caregiver": "Marilde", "distance": "5 km", "price": "R$ 60,00", "date": "01/03/2025", "time": "15:00" },
-      { "id": 3, "name": "Bibinho", "caregiver": "Márcio", "distance": "5 km", "price": "R$ 60,00", "date": "05/03/2024", "time": "19:00" }
-    ]
-  }
-  
+  "previouswalks": [
+    {
+      "id": 1,
+      "name": "Rabixo",
+      "caregiver": "Jurandir",
+      "distance": "4.5 km",
+      "price": "R$ 50,00",
+      "date": "24/02/2025",
+      "time": "18:00",
+      "end_time": "19:00",
+      "location": "Rua X 105",
+      "dog_details": {
+        "name": "Rabixo",
+        "breed": "Pastor alemão",
+        "characteristics": "Agitado"
+      },
+      "walker_details": {
+        "name": "Jurandir da Silva",
+        "rating": "4.8/5",
+        "description": "Formado em Veterinária na UFMG",
+        "image": "https://media.istockphoto.com/id/1392528328/pt/foto/portrait-of-smiling-handsome-man-in-white-t-shirt-standing-with-crossed-arms.jpg?s=612x612&w=0&k=20&c=bE3zYrWmF6tJ3omKxaUxOEzNWe0LGux8st_XgthV9b8="
+      }
+    },
+    {
+      "id": 2,
+      "name": "Pelotas",
+      "caregiver": "Marilde",
+      "distance": "5.5 km",
+      "price": "R$ 60,00",
+      "date": "26/02/2025",
+      "time": "15:00",
+      "end_time": "16:00",
+      "location": "Rua Y 200",
+      "dog_details": {
+        "name": "Pelotas",
+        "breed": "Labrador",
+        "characteristics": "Sociável"
+      },
+      "walker_details": {
+        "name": "Marilde Costa",
+        "rating": "4.7/5",
+        "description": "Experiência de 5 anos com passeios",
+        "image": "https://media.istockphoto.com/id/1078084172/pt/foto/business-woman-portrait-outdoors.jpg?s=612x612&w=0&k=20&c=sXWNOlHnuOmBJtPv0u5b87M4E3PN-rku8Hr4s_dB8Fg="
+      }
+    },
+    {
+      "id": 3,
+      "name": "Bibinho",
+      "caregiver": "Márcio",
+      "distance": "7 km",
+      "price": "R$ 70,00",
+      "date": "27/02/2025",
+      "time": "19:00",
+      "end_time": "20:00",
+      "location": "Avenida Z 350",
+      "dog_details": {
+        "name": "Bibinho",
+        "breed": "Poodle",
+        "characteristics": "Calmo"
+      },
+      "walker_details": {
+        "name": "Márcio Almeida",
+        "rating": "4.9/5",
+        "description": "Especialista em raças pequenas",
+        "image": "https://static.vecteezy.com/ti/fotos-gratis/t1/5890017-feliz-jovem-negro-sorrindo-em-fundo-urbano-foto.jpg"
+      }
+    }
+  ],
+  "nextwalks": [
+    {
+      "id": 1,
+      "name": "Rabixo",
+      "caregiver": "Jurandir",
+      "distance": "6 km",
+      "price": "R$ 60,00",
+      "date": "30/02/2025",
+      "time": "18:00",
+      "end_time": "19:00",
+      "location": "Rua X 105",
+      "dog_details": {
+        "name": "Rabixo",
+        "breed": "Pastor alemão",
+        "characteristics": "Agitado"
+      },
+      "walker_details": {
+        "name": "Jurandir da Silva",
+        "rating": "4.8/5",
+        "description": "Formado em Veterinária na UFMG",
+        "image": "https://media.istockphoto.com/id/1392528328/pt/foto/portrait-of-smiling-handsome-man-in-white-t-shirt-standing-with-crossed-arms.jpg?s=612x612&w=0&k=20&c=bE3zYrWmF6tJ3omKxaUxOEzNWe0LGux8st_XgthV9b8="
+      }
+    },
+    {
+      "id": 2,
+      "name": "Pelotas",
+      "caregiver": "Marilde",
+      "distance": "5 km",
+      "price": "R$ 55,00",
+      "date": "01/03/2025",
+      "time": "15:00",
+      "end_time": "16:00",
+      "location": "Rua Y 200",
+      "dog_details": {
+        "name": "Pelotas",
+        "breed": "Labrador",
+        "characteristics": "Sociável"
+      },
+      "walker_details": {
+        "name": "Marilde Costa",
+        "rating": "4.7/5",
+        "description": "Experiência de 5 anos com passeios",
+        "image": "https://media.istockphoto.com/id/1078084172/pt/foto/business-woman-portrait-outdoors.jpg?s=612x612&w=0&k=20&c=sXWNOlHnuOmBJtPv0u5b87M4E3PN-rku8Hr4s_dB8Fg="
+      }
+    },
+    {
+      "id": 3,
+      "name": "Bibinho",
+      "caregiver": "Márcio",
+      "distance": "4 km",
+      "price": "R$ 45,00",
+      "date": "05/03/2025",
+      "time": "19:00",
+      "end_time": "20:00",
+      "location": "Avenida Z 350",
+      "dog_details": {
+        "name": "Bibinho",
+        "breed": "Poodle",
+        "characteristics": "Calmo"
+      },
+      "walker_details": {
+        "name": "Márcio Almeida",
+        "rating": "4.9/5",
+        "description": "Especialista em raças pequenas",
+        "image": "https://static.vecteezy.com/ti/fotos-gratis/t1/5890017-feliz-jovem-negro-sorrindo-em-fundo-urbano-foto.jpg"
+      }
+    }
+  ], 
+  "inexecution": [
+    {
+      "dogName": "Jubileu",
+      "dogDetails": "Pastor alemão, agitado",
+      "date": "28/11/2024",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "walker": "Jurandir",
+      "distance": "4km",
+      "price": "R$ 60,00",
+      "location": [-21.9810, -47.8795]
+    }
+  ]
+}
