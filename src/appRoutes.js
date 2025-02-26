@@ -8,6 +8,7 @@ import PreviousWalks from './screens/Dashboard/walk_lists/previous_walks';
 import PreviousWalkDetails from './screens/Dashboard/walk_details/previous_walk_details';
 import NextWalkDetails from './screens/Dashboard/walk_details/next_walk_details';
 import InExecution from './screens/Dashboard/in_execution/in_execution';
+import RegisterWalk from './screens/Register_Walk/register_walk'; 
 
 
 const AppRoutes = () => {
@@ -22,6 +23,7 @@ const AppRoutes = () => {
         <Route path="/previous_walk_details/:id" element={<PreviousWalkDetails />} /> {/* Rota para as para as páginas de detalhes dos passeios agendados */}
         <Route path="/next_walk_details/:id" element={<NextWalkDetails />} /> {/* Rota para as para as páginas de detalhes dos passeios passados */}
         <Route path="/in_execution" element={<InExecution />} /> {/* Rota para as para as páginas de detalhes do passeio em andamento */}
+        <Route path="/register_walk" element={<RegisterWalk />} /> {/* Rota para a página de cadastro de passeio*/}
       </Routes>
     </Router>
   );
