@@ -44,7 +44,7 @@ const PreviousWalks = () => {
                 <img src="/assets/searchicon.png" alt="Buscar" width="24" height="24" />
               </button>
             </div>
-            <Link to='/dashboard/register_walk' className="general-button">Agendar passeio</Link>
+            <Link to='/register_walk' className="general-button">Agendar passeio</Link>
             <Link to='/nextwalks' className="tab-button">Próximos</Link>
             <Link to='/previouswalks' className="tab-button active">Anteriores</Link>
             <Link to='/in_execution' className="tab-button">Em andamento</Link>
