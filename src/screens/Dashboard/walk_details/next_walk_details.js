@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Header from '../../../components/header'; // Assumindo que você tenha o componente Header
+import { useParams, useNavigate } from 'react-router-dom';
+import Header from '../../../components/header';
 import '../../../App.css';
-import './details.css'; // Caminho do arquivo CSS
+import './details.css';
 
 const NextWalkDetails = () => {
-  const { id } = useParams(); // Pega o 'id' da URL
+  const { id } = useParams();
+  const navigate = useNavigate(); // Para redirecionar após excluir
   const [walkDetails, setWalkDetails] = useState(null);
 
   useEffect(() => {
-    // Aqui a URL é de onde os dados dos passeios agendados podem ser buscados
     fetch('http://localhost:5000/nextwalks')
       .then((response) => response.json())
       .then((data) => {
-        const walk = data.find((w) => w.id === parseInt(id)); // Filtra pelo id
+        const walk = data.find((w) => w.id === parseInt(id));
         setWalkDetails(walk);
       })
       .catch((error) => console.error('Error fetching walk details:', error));
   }, [id]);
 
   if (!walkDetails) {
-    return <div>Loading...</div>; // Exibe uma mensagem enquanto os dados estão sendo carregados
+    return <div>Loading...</div>;
   }
 
   return (
@@ -51,7 +51,7 @@ const NextWalkDetails = () => {
           <div className="details-sections">
             <div className="details-div">
               <h1>Detalhes do passeador</h1>
-              <p>Nome: {walkDetails.caregiver}</p>
+              <p>Nome: {walkDetails.walker_details.name}</p>
               <p>Avaliação: {walkDetails.walker_details.rating}</p>
               <p>Detalhes: {walkDetails.walker_details.description}</p>
             </div>
@@ -68,7 +68,7 @@ const NextWalkDetails = () => {
           <div className="details-buttons">
             <a className="details-button">Solicitar alteração</a>
             <a className="details-button">Conversar</a>
-            <a className="details-button-cancel">Cancelar</a>
+            <a className="details-button-cancel" >Cancelar</a>
           </div>
         </div>
       </div>
