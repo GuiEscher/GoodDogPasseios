@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'; // Adicione useNavigate
 import { auth } from '../../../config/firebase';
 import Header from '../../../components/header';
 import L from 'leaflet';
@@ -10,10 +11,18 @@ const InExecution = () => {
   const [loading, setLoading] = useState(true);
   const mapRef = useRef(null);
   const mapInitialized = useRef(false);
-  const user = auth.currentUser;
+  const user = auth.currentUser; // Obtém o usuário logado
+  const navigate = useNavigate(); // Hook para redirecionamento
 
-  L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.9.2/dist/images/';
+  // Verifica se o usuário está logado
+  useEffect(() => {
+    if (!user) {
+      // Se o usuário não estiver logado, redireciona para a página de login
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
+  // Busca os detalhes do passeio em andamento
   useEffect(() => {
     if (user) {
       fetch(`http://localhost:5000/inexecution?uid=${user.uid}`)
@@ -30,6 +39,7 @@ const InExecution = () => {
     }
   }, [user]);
 
+  // Inicializa o mapa com as coordenadas do passeio
   useEffect(() => {
     if (walkDetails && !mapInitialized.current) {
       const defaultCoords = [-21.9810, -47.8795];
@@ -59,16 +69,17 @@ const InExecution = () => {
 
   if (!walkDetails) {
     return (
-    <div>
-      <Header />
-      <div className="dashboard-container">
-        <div className="walk-content">
-        <button onClick={() => window.history.back()} className="return-button">
-          &lt; Voltar<strong style={{ color: 'black'}}> - Nenhum passeio em andamento foi encontrado.</strong>
-        </button>
-        </div> 
+      <div>
+        <Header />
+        <div className="dashboard-container">
+          <div className="walk-content">
+            <button onClick={() => window.history.back()} className="return-button">
+              &lt; Voltar<strong style={{ color: 'black' }}> - Nenhum passeio em andamento foi encontrado.</strong>
+            </button>
+          </div>
+        </div>
       </div>
-    </div> )
+    );
   }
 
   return (
@@ -78,9 +89,9 @@ const InExecution = () => {
         <div className="walk-content">
           <div className="full-walk-details">
             <div className="walk-details">
-            <button onClick={() => window.history.back()} className="return-button">
+              <button onClick={() => window.history.back()} className="return-button">
                 &lt; Voltar
-            </button>
+              </button>
               <h1>Detalhes do passeio</h1>
               <p>Nome do Cachorro: {walkDetails.dogName}</p>
               <p>Características: {walkDetails.dogDetails}</p>

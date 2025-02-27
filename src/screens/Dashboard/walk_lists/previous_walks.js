@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Adicione useNavigate
 import axios from 'axios';
 import { auth } from '../../../config/firebase'; 
 import Header from '../../../components/header';
@@ -9,8 +9,18 @@ import './next_walks.css';
 const PreviousWalks = () => {
   const [walks, setWalks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const user = auth.currentUser; // Obtem o usuário logado
+  const user = auth.currentUser; // Obtém o usuário logado
+  const navigate = useNavigate(); // Hook para redirecionamento
 
+  // Verifica se o usuário está logado
+  useEffect(() => {
+    if (!user) {
+      // Se o usuário não estiver logado, redireciona para a página de login
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  // Busca os passeios anteriores do usuário logado
   useEffect(() => {
     if (user) {
       axios.get(`http://localhost:5000/previouswalks?uid=${user.uid}`) // Filtra por UID
@@ -24,6 +34,7 @@ const PreviousWalks = () => {
     }
   }, [user]);
 
+  // Filtra os passeios com base no termo de busca
   const filteredWalks = walks.filter((walk) =>
     walk.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     walk.caregiver.toLowerCase().includes(searchTerm.toLowerCase()) ||

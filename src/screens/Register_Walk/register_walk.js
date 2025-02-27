@@ -24,6 +24,14 @@ const RegisterWalk = () => {
   const [randomWalker, setRandomWalker] = useState(null);
   const [calculatedPrice, setCalculatedPrice] = useState('R$0,00');
 
+   // Verifica se o usuário está logado
+    useEffect(() => {
+      if (!user) {
+        // Se o usuário não estiver logado, redireciona para a página de login
+        navigate('/login');
+      }
+    }, [user, navigate]);
+
   useEffect(() => {
     axios.get('http://localhost:5000/nextwalks')
       .then((response) => {
