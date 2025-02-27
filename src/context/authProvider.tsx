@@ -23,13 +23,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(firebaseUser);
       setLoading(false);
 
-      if (!firebaseUser) {
-        window.location.href = "/login"; // Redireciona para login caso não autenticado
+      if (!firebaseUser && !excludedRoutes.includes(currentPath)) {
+        window.location.href = "/login"; // Redireciona para login apenas se não for uma rota permitida
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [currentPath]); 
+
 
   if (loading && !excludedRoutes.includes(currentPath)) {
     return (

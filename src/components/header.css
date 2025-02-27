@@ -1,0 +1,29 @@
+.logo-header{
+    text-decoration: none !important;
+}
+
+
+/* Reduz tamanho do texto em telas menores */
+@media screen and (max-width: 768px) {
+    .site-name {
+      font-size: 16px !important;
+    }
+  
+    .nav-links a {
+      font-size: 14px !important; 
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .site-name {
+      font-size: 14px !important;
+    }
+  
+    .nav-links {
+      gap: 10px !important;
+    }
+  
+    .nav-links a {
+      font-size: 12px !important;
+    }
+  }

@@ -6,8 +6,9 @@ import './details.css';
 
 const NextWalkDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // Para redirecionar após excluir
+  const navigate = useNavigate();
   const [walkDetails, setWalkDetails] = useState(null);
+  const [loading, setLoading] = useState(true); // Adiciona um estado de carregamento
 
   useEffect(() => {
     fetch('http://localhost:5000/nextwalks')
@@ -15,12 +16,31 @@ const NextWalkDetails = () => {
       .then((data) => {
         const walk = data.find((w) => w.id === parseInt(id));
         setWalkDetails(walk);
+        setLoading(false); // Finaliza o carregamento
       })
-      .catch((error) => console.error('Error fetching walk details:', error));
+      .catch((error) => {
+        console.error('Error fetching walk details:', error);
+        setLoading(false);
+      });
   }, [id]);
 
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
   if (!walkDetails) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Header />
+        <div className="dashboard-container">
+          <div className="walk-content">
+            <button onClick={() => window.history.back()} className="return-button">
+              &lt; Voltar<strong style={{ color: 'black' }}> - Nenhum passeio foi encontrado com essa identificação.</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -30,7 +50,9 @@ const NextWalkDetails = () => {
         <div className="content">
           <div className="details-sections">
             <div className="details-div">
-              <a href="/nextwalks" className="return-button">&lt; Voltar</a>
+            <button onClick={() => window.history.back()} className="return-button">
+                &lt; Voltar
+              </button>
 
               <h1>Detalhes do passeio</h1>
               <p>Nome do Cachorro: {walkDetails.name}</p>
@@ -68,7 +90,7 @@ const NextWalkDetails = () => {
           <div className="details-buttons">
             <a className="details-button">Solicitar alteração</a>
             <a className="details-button">Conversar</a>
-            <a className="details-button-cancel" >Cancelar</a>
+            <a className="details-button-cancel">Cancelar</a>
           </div>
         </div>
       </div>

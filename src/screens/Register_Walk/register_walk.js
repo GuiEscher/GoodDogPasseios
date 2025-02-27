@@ -32,23 +32,26 @@ const RegisterWalk = () => {
       }
     }, [user, navigate]);
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/nextwalks')
-      .then((response) => {
-        const walks = response.data;
-
-        if (walks.length > 0) {
-          const maxId = Math.max(...walks.map(walk => Number(walk.id)));
-          setId(maxId + 1);
-
-          const randomWalk = walks[Math.floor(Math.random() * walks.length)];
-          setRandomWalker(randomWalk.walker_details);
-        } else {
-          setId(1);
-        }
-      })
-      .catch((error) => console.error('Erro ao buscar passeios:', error));
-  }, []);
+    // Atribui um passeador aleatório dentre os cadastrados para o novo passeio
+    useEffect(() => {
+      axios.get('http://localhost:5000/nextwalks')
+        .then((response) => {
+          const walks = response.data;
+    
+          if (walks.length > 0) {
+            const maxId = Math.max(...walks.map(walk => Number(walk.id)));
+            setId(maxId + 1);
+    
+            // Seleciona um passeador aleatório
+            const uniqueWalkers = walks.map(walk => walk.walker_details);
+            const randomWalker = uniqueWalkers[Math.floor(Math.random() * uniqueWalkers.length)];
+            setRandomWalker(randomWalker);
+          } else {
+            setId(1);
+          }
+        })
+        .catch((error) => console.error('Erro ao buscar passeios:', error));
+    }, []);
 
   // Atualiza o preço e horário de término conforme a distância muda
   useEffect(() => {
@@ -57,13 +60,19 @@ const RegisterWalk = () => {
       if (!isNaN(km) && km > 0) {
         const price = km * 15;
         setCalculatedPrice(`R$${price.toFixed(2)}`);
-
+  
         if (time) {
           const [hh, mm] = time.split(':').map(Number);
           const totalMinutes = mm + km * 15;
-          const newHour = hh + Math.floor(totalMinutes / 60);
-          const newMinutes = totalMinutes % 60;
-          setEndTime(`${newHour.toString().padStart(2, '0')}:${newMinutes.toString().padStart(2, '0')}`);
+          let newHour = hh + Math.floor(totalMinutes / 60);
+          let newMinutes = totalMinutes % 60;
+  
+          // Se passar de 23:59, ajustar para o próximo dia
+          newHour = newHour % 24;
+  
+          setEndTime(
+            `${newHour.toString().padStart(2, '0')}:${newMinutes.toString().padStart(2, '0')}`
+          );
         }
       }
     } else {

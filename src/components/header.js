@@ -1,13 +1,14 @@
 import React from "react";
 import { auth } from '../config/firebase';
+import './header.css'; // Importação correta
 
 const Header = () => {
   const user = auth.currentUser;
 
   const handleLogout = async () => {
     try {
-      await auth.signOut(); // Faz o logout no Firebase
-      window.location.href = "/login"; // Redireciona para a página de login
+      await auth.signOut();
+      window.location.href = "/login";
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
     }
@@ -16,23 +17,24 @@ const Header = () => {
   return (
     <header>
       <nav>
-        <div className="logo">
+        <a href="/" className="logo">
           <img src="/assets/logo.png" alt="GoodDog Passeios" />
-          <a href="/" className="site-name">GoodDog Passeios</a>
-        </div>
+          <p className="site-name">GoodDog Passeios</p>
+        </a>
         <ul className="nav-links">
-          <li><a href="/#sobre">Sobre</a></li>
+          {!user && <li><a href="/#sobre">Sobre</a></li>}
           {user && <li><a href="/nextwalks">Seus Passeios</a></li>}
           {user && (
             <li>
               <a href="/" onClick={(e) => {
-                e.preventDefault(); // Evita o comportamento padrão do link
-                handleLogout(); // Chama a função de logout
+                e.preventDefault();
+                handleLogout();
               }}>
                 Logout
               </a>
             </li>
           )}
+          {!user && <li><a href="/login">Login</a></li>}
         </ul>
       </nav>
     </header>

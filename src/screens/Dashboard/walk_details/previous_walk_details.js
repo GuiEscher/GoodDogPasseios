@@ -7,6 +7,7 @@ import './details.css';
 const PreviousWalkDetails = () => {
   const { id } = useParams();  // Pega o 'id' da URL
   const [walkDetails, setWalkDetails] = useState(null);
+  const [loading, setLoading] = useState(true); // Adiciona um estado de carregamento
 
   useEffect(() => {
     fetch('http://localhost:5000/previouswalks')
@@ -14,13 +15,33 @@ const PreviousWalkDetails = () => {
         .then(data => {
             const walk = data.find(w => w.id === parseInt(id)); // Filtra pelo id
             setWalkDetails(walk);
+            setLoading(false); // Finaliza o carregamento
         })
-        .catch(error => console.error('Error fetching walk details:', error));
+        .catch((error) => {
+          console.error('Error fetching walk details:', error);
+          setLoading(false);
+        });
   }, [id]);
 
-  if (!walkDetails) {
-    return <div>Loading...</div>;  // Exibe uma mensagem enquanto os dados estão sendo carregados
+  if (loading) {
+    return <div>Carregando...</div>;
   }
+
+  if (!walkDetails) {
+    return (
+      <div>
+        <Header />
+        <div className="dashboard-container">
+          <div className="walk-content">
+            <button onClick={() => window.history.back()} className="return-button">
+              &lt; Voltar<strong style={{ color: 'black' }}> - Nenhum passeio foi encontrado com essa identificação.</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div>
@@ -29,7 +50,9 @@ const PreviousWalkDetails = () => {
         <div className="content">
           <div className="details-sections">
             <div className="details-div">
-              <a href="/previouswalks" className="return-button">&lt; Voltar</a>
+            <button onClick={() => window.history.back()} className="return-button">
+                &lt; Voltar
+              </button>
 
               <h1>Detalhes do passeio</h1>
               <p>Nome do Cachorro: {walkDetails.name}</p>

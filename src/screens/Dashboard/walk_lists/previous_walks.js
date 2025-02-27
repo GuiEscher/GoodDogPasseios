@@ -75,7 +75,7 @@ const PreviousWalks = () => {
                   <th className="disposable-column">Distância</th>
                   <th className="less-disposable-column">Valor</th>
                   <th>Data</th>
-                  <th>Horário</th>
+                  <th>Horário de início</th>
                 </tr>
               </thead>
               <tbody>

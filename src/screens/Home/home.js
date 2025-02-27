@@ -1,22 +1,13 @@
 import React from 'react';
+import Header from '../../components/header';
 
 const Home = () => {
   return (
     <div>
       {/* Cabeçalho */}
-      <header>
-        <nav>
-          <div className="logo">
-            <img src="../../assets/logo.png" alt="GoodDog Passeios" />
-            <a href="/" className="site-name">GoodDog Passeios</a>
-          </div>
-          <ul className="nav-links">
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="/login">Login</a></li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
+      
       {/* Seção principal com a imagem e texto */}
       <section className="main-banner">
         <img src="../../assets/banner.jpg" alt="Cachorro em passeio" />
