@@ -1,30 +1,33 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Adicione o Link aqui
+import { useNavigate, Link } from 'react-router-dom';
+import { auth } from '../../config/firebase'; 
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Header from '../../components/header';
-import '../../App.css'; // Importe os estilos
+import '../../App.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const provider = new GoogleAuthProvider();
 
-  const handleSubmit = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    // Validação do e-mail
-    if (!email.endsWith('@gmail.com')) {
-      alert('O e-mail deve terminar com @gmail.com');
-      return;
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate('/nextwalks');
+    } catch (error) {
+      alert('Erro ao fazer login: ' + error.message);
     }
+  };
 
-    // Validação da senha
-    if (password.length < 6) {
-      alert('A senha deve ter pelo menos 6 caracteres');
-      return;
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      navigate('/nextwalks');
+    } catch (error) {
+      alert('Erro ao autenticar com Google: ' + error.message);
     }
-
-    // Redireciona para a próxima página (simulação)
-    navigate('/nextwalks');
   };
 
   return (
@@ -33,32 +36,18 @@ const Login = () => {
       <section className="login-section">
         <div className="login-card">
           <h2>Faça login para continuar</h2>
-          <form id="login-form" onSubmit={handleSubmit}>
+          <form id="login-form" onSubmit={handleLogin}>
             <label htmlFor="email">E-mail</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <input type="email" id="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
             <label htmlFor="password">Senha</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <input type="password" id="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
             <button type="submit">Confirmar</button>
           </form>
 
           <p>ou</p>
-          <button className="google-login">
+          <button className="google-login" onClick={handleGoogleLogin}>
             <img src="/assets/google-icon.png" alt="Google Icon" /> Google
           </button>
 

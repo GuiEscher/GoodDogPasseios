@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { auth } from '../../config/firebase'; // Importa o auth
 import Header from '../../components/header';
 import '../../App.css';
 import './register_walk.css';
 
 const RegisterWalk = () => {
   const navigate = useNavigate();
-  
+  const user = auth.currentUser; // Obtem o usuário logado
+
   const [walkid, setId] = useState(null);
   const [name, setName] = useState('');
   const [caregiver, setCaregiver] = useState('');
@@ -26,7 +28,7 @@ const RegisterWalk = () => {
     axios.get('http://localhost:5000/nextwalks')
       .then((response) => {
         const walks = response.data;
-        
+
         if (walks.length > 0) {
           const maxId = Math.max(...walks.map(walk => Number(walk.id)));
           setId(maxId + 1);
@@ -78,14 +80,20 @@ const RegisterWalk = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     if (!isValidDate(date)) {
       alert('A data não pode ser anterior à data atual!');
       return;
     }
-    
+
+    if (!user) {
+      alert('Usuário não autenticado. Faça login para cadastrar um passeio.');
+      return;
+    }
+
     const newWalk = {
       id: walkid,
+      uid: user.uid, // Adiciona o uid do usuário logado
       name,
       caregiver: randomWalker ? randomWalker.name : '',
       distance,
@@ -114,33 +122,59 @@ const RegisterWalk = () => {
               &lt; Voltar
             </a>
             <div className="cadastro-flex">
-              
               <div className="cadastro-card">
                 <h2>Informações do Cachorro</h2>
                 <label htmlFor="name">Nome</label>
-                <input type="text" id="name" placeholder="Nome do Cachorro" value={name} 
-                  onChange={(event) => setName(event.target.value)} required/>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Nome do Cachorro"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  required
+                />
                 <label htmlFor="breed">Raça</label>
-                <input type="text" id="breed" placeholder="Raça do Cachorro" value={breed} 
-                  onChange={(event) => setBreed(event.target.value)} required/>
+                <input
+                  type="text"
+                  id="breed"
+                  placeholder="Raça do Cachorro"
+                  value={breed}
+                  onChange={(event) => setBreed(event.target.value)}
+                  required
+                />
                 <label>Características</label>
                 <div className="input-checkbox">
                   <div>
-                      <input type="radio" id="opcao_amigavel" name="characteristics" value="Amigável"
-                        onChange={(event) => setCharacteristics(event.target.value)}/>
-                      <label htmlFor="opcao_amigavel">Amigável</label>
+                    <input
+                      type="radio"
+                      id="opcao_amigavel"
+                      name="characteristics"
+                      value="Amigável"
+                      onChange={(event) => setCharacteristics(event.target.value)}
+                    />
+                    <label htmlFor="opcao_amigavel">Amigável</label>
                   </div>
-                  <hr/>
+                  <hr />
                   <div>
-                      <input type="radio" id="opcao_calmo" name="characteristics" value="Calmo"
-                        onChange={(event) => setCharacteristics(event.target.value)}/>
-                      <label htmlFor="opcao_calmo">Calmo</label>
+                    <input
+                      type="radio"
+                      id="opcao_calmo"
+                      name="characteristics"
+                      value="Calmo"
+                      onChange={(event) => setCharacteristics(event.target.value)}
+                    />
+                    <label htmlFor="opcao_calmo">Calmo</label>
                   </div>
-                  <hr/>
+                  <hr />
                   <div>
-                      <input type="radio" id="opcao_agitado" name="characteristics" value="Agitado"
-                        onChange={(event) => setCharacteristics(event.target.value)}/>
-                      <label htmlFor="opcao_agitado">Agitado</label>
+                    <input
+                      type="radio"
+                      id="opcao_agitado"
+                      name="characteristics"
+                      value="Agitado"
+                      onChange={(event) => setCharacteristics(event.target.value)}
+                    />
+                    <label htmlFor="opcao_agitado">Agitado</label>
                   </div>
                 </div>
               </div>
@@ -148,31 +182,49 @@ const RegisterWalk = () => {
               <div className="cadastro-card">
                 <h2>Informações do Trajeto</h2>
                 <label htmlFor="date">Data</label>
-                <input 
-                  type="date" 
-                  id="date" 
-                  value={date ? date.split('/').reverse().join('-') : ''} 
-                  onChange={handleDateChange} 
+                <input
+                  type="date"
+                  id="date"
+                  value={date ? date.split('/').reverse().join('-') : ''}
+                  onChange={handleDateChange}
                   required
                 />
                 <label htmlFor="passeio_hora">Horário</label>
-                <input type="time" id="passeio_hora" placeholder="Horário" value={time} 
-                  onChange={(event) => setTime(event.target.value)} required/>
+                <input
+                  type="time"
+                  id="passeio_hora"
+                  placeholder="Horário"
+                  value={time}
+                  onChange={(event) => setTime(event.target.value)}
+                  required
+                />
                 <label htmlFor="passeio_origem">Origem</label>
-                <input type="text" id="passeio_origem" placeholder="Origem" value={location} 
-                  onChange={(event) => setLocation(event.target.value)} required/>
+                <input
+                  type="text"
+                  id="passeio_origem"
+                  placeholder="Origem"
+                  value={location}
+                  onChange={(event) => setLocation(event.target.value)}
+                  required
+                />
                 <label htmlFor="passeio_distancia">Distância (km)</label>
-                <input type="number" id="passeio_distancia" placeholder="Distância" value={distance} 
-                  onChange={(event) => setDistance(event.target.value)} required/>
+                <input
+                  type="number"
+                  id="passeio_distancia"
+                  placeholder="Distância"
+                  value={distance}
+                  onChange={(event) => setDistance(event.target.value)}
+                  required
+                />
                 <label>Horário de término estimado</label>
-                <input type="time" value={end_time} readOnly/>
+                <input type="time" value={end_time} readOnly />
               </div>
             </div>
 
             <div className="cadastro-card">
               <h3 className="price-message">Valor do passeio: <strong>{calculatedPrice}</strong></h3>
             </div>
-            
+
             <button type="submit" disabled={!walkid}>Confirmar</button>
           </form>
         </div>

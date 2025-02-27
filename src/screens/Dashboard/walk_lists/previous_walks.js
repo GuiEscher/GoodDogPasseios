@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { auth } from '../../../config/firebase'; 
 import Header from '../../../components/header';
 import '../../../App.css';
-import './next_walks.css';
+import './next_walks.css'; 
 
 const PreviousWalks = () => {
   const [walks, setWalks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const user = auth.currentUser; // Obtem o usuário logado
 
   useEffect(() => {
-    axios.get('http://localhost:5000/previouswalks')
-      .then((response) => {
-        setWalks(response.data);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar passeios:", error);
-      });
-  }, []);
+    if (user) {
+      axios.get(`http://localhost:5000/previouswalks?uid=${user.uid}`) // Filtra por UID
+        .then((response) => {
+          console.log("Dados recebidos:", response.data);
+          setWalks(response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar passeios:", error);
+        });
+    }
+  }, [user]);
 
   const filteredWalks = walks.filter((walk) =>
     walk.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
