@@ -17,12 +17,6 @@
     display: flex;
     margin: 50px;
 }
-
-.return-button {
-    text-decoration: none; 
-    margin-bottom: 16px;
-    font-size: 16px;
-}
 .cadastro-form{
     text-align: center;
     color: #f8f4ff;
@@ -109,3 +103,23 @@
 .price-message{
     color:#2A2D54;
 }
+
+.return-button {
+    text-decoration: none; /* Remove qualquer sublinhado ou decoração do link */
+    font-family: 'Red Hat Text', sans-serif;
+    font-size: 16px;
+    color: #995577; /* Cor do link, pode ajustar conforme o design */
+    background: none; /* Remover qualquer fundo, como no botão */
+    border: none; /* Remover borda */
+    padding: 0; /* Remover padding */
+    cursor: pointer; /* Alterar o cursor para indicar que é clicável */
+    transition: color 0.2s ease-in-out; /* Efeito suave ao passar o mouse */
+  }
+  
+  .return-button:hover {
+    color: #834866; /* Cor do link ao passar o mouse */
+  }
+  
+  .return-button:focus {
+    outline: none; /* Remover o contorno padrão ao clicar */
+  }

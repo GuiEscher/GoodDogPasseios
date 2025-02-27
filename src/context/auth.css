@@ -1,0 +1,10 @@
+.walk-content {
+    background-color: #FAFAFA;
+    margin: 32px 32px 0 32px; 
+    padding: 32px;
+    border-radius: 12px;
+    display: grid ; 
+    grid-template-columns: 30% 70%;
+    gap: 32px;
+    height: auto;
+}

@@ -116,11 +116,13 @@ const RegisterWalk = () => {
       <Header />
       <section className="cadastro-section">
         <div className="cadastro-box">
+          
           <form className="cadastro-form" onSubmit={handleSubmit}>
             <h2>Cadastrar Passeio</h2>
-            <a href="/previouswalks" className="return-button">
-              &lt; Voltar
-            </a>
+            <button onClick={() => window.history.back()}>
+                Voltar
+            </button>
+            
             <div className="cadastro-flex">
               <div className="cadastro-card">
                 <h2>Informações do Cachorro</h2>

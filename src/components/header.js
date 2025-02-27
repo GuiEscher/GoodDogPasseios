@@ -1,22 +1,25 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import { auth } from '../config/firebase';
 
 const Header = () => {
-  const location = useLocation();
+  const user = auth.currentUser;
 
-  const isLoginOrRegister = location.pathname === '/login' || location.pathname === '/register';
+  const handleLogout = async () => {
+    await auth.signOut();
+    window.location.href = "/login";
+  };
 
   return (
     <header>
       <nav>
         <div className="logo">
           <img src="/assets/logo.png" alt="GoodDog Passeios" />
-          <Link to="/" className="site-name">GoodDog Passeios</Link>
+          <a href="/" className="site-name">GoodDog Passeios</a>
         </div>
         <ul className="nav-links">
-          {!isLoginOrRegister && <li><Link to="/nextwalks">Seus Passeios</Link></li>}
-          <li><Link to="/#sobre">Sobre</Link></li>
-          {!isLoginOrRegister && <li><Link to="/">Logout</Link></li>}
+          <li><a href="/#sobre">Sobre</a></li>
+          {user && <li><a href="/nextwalks">Seus Passeios</a></li>}
+          {user && <li><a href="/">Logout</a></li>}
         </ul>
       </nav>
     </header>

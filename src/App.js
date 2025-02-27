@@ -1,6 +1,7 @@
 import React from 'react';
 import AppRoutes from './appRoutes'; // Importe o arquivo de rotas
 import './App.css'; // Importe os estilos globais
+import Header from './components/header';
 
 function App() {
   return (

@@ -10,7 +10,6 @@ import NextWalkDetails from './screens/Dashboard/walk_details/next_walk_details'
 import InExecution from './screens/Dashboard/in_execution/in_execution';
 import RegisterWalk from './screens/Register_Walk/register_walk'; 
 
-
 const AppRoutes = () => {
   return (
     <Router>
