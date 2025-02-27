@@ -9,6 +9,6 @@ Objetivo: Site protótipo de solicitação de passeios para cachorros
 
 Instruções:
  - Para correto funcionamento, instale as dependências com: npm install
- - Para a utenticação, necessário criar o arquivo .env na raiz com os dados especificos do firebase, entrar em contato com o grupo paa tais dados
+ - Para a autenticação funcionar, necessário criar o arquivo .env na raiz com os dados especificos do firebase, entrar em contato com o grupo paa tais dados
  - Para executar o frontend, use o comando: npm run start
  - Para executar o backend simulado: npm run json-server
