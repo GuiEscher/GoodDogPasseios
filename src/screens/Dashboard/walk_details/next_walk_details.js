@@ -33,9 +33,10 @@ const NextWalkDetails = () => {
       <div>
         <Header />
         <div className="dashboard-container">
-          <div className="walk-content">
+          <div className="error-message">
             <button onClick={() => window.history.back()} className="return-button">
-              &lt; Voltar<strong style={{ color: 'black' }}> - Nenhum passeio foi encontrado com essa identificação.</strong>
+              &lt; Voltar
+              <p style={{ color: 'black' }}>Nenhum passeio foi encontrado com essa identificação.</p>
             </button>
           </div>
         </div>

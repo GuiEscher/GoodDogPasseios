@@ -149,6 +149,16 @@ nav {
     background-color: #834866;
 }
 
+.error-message {
+    background-color: #FAFAFA;
+    width: 50%;
+    max-width: 600px; /* Define uma largura máxima para evitar ocupar toda a tela */
+    margin: 32px auto; /* Centraliza horizontalmente */
+    padding: 32px;
+    border-radius: 12px;
+    text-align: center; /* Centraliza o conteúdo de texto */
+}
+
 /* Adicionando o estilo para a div do mapa */
 #mapid {
     height: 80vh !important; 
@@ -173,6 +183,10 @@ nav {
 
 /* Estilos para a responsividade */
 @media (max-width: 500px) {
+    .error-message{
+        max-width: 400px;
+    }
+
     .site-name {
         display: none; /* Oculta o nome do site */
     }

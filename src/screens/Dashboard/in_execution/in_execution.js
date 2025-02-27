@@ -72,9 +72,10 @@ const InExecution = () => {
       <div>
         <Header />
         <div className="dashboard-container">
-          <div className="walk-content">
+          <div className="error-message">
             <button onClick={() => window.history.back()} className="return-button">
-              &lt; Voltar<strong style={{ color: 'black' }}> - Nenhum passeio em andamento foi encontrado.</strong>
+              &lt; Voltar
+              <p style={{ color: 'black' }}>Nenhum passeio foi encontrado nesse momento.</p>
             </button>
           </div>
         </div>
