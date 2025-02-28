@@ -25,14 +25,28 @@ const PreviousWalks = () => {
     if (user) {
       axios.get(`http://localhost:5000/previouswalks?uid=${user.uid}`) // Filtra por UID
         .then((response) => {
-          console.log("Dados recebidos:", response.data);
-          setWalks(response.data);
+          // Ordena os passeios pela data de forma crescente
+          const sortedWalks = response.data.sort((a, b) => {
+            const parseDate = (dateStr) => {
+              // Converte a string de data para o formato YYYY-MM-DD, se necessário
+              const [day, month, year] = dateStr.split('/'); // Se a data for no formato DD/MM/YYYY
+              return new Date(`${year}-${month}-${day}`);  // Formata como YYYY-MM-DD
+            };
+  
+            const dateA = parseDate(a.date);  // Converte a data de a para Date
+            const dateB = parseDate(b.date);  // Converte a data de b para Date
+  
+            return dateA - dateB;  // Ordena de forma crescente
+          });
+  
+          setWalks(sortedWalks);  // Atualiza o estado com os passeios ordenados
         })
         .catch((error) => {
           console.error("Erro ao buscar passeios:", error);
         });
     }
   }, [user]);
+  
 
   // Filtra os passeios com base no termo de busca
   const filteredWalks = walks.filter((walk) =>
