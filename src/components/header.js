@@ -5,8 +5,12 @@ const Header = () => {
   const user = auth.currentUser;
 
   const handleLogout = async () => {
-    await auth.signOut();
-    window.location.href = "/login";
+    try {
+      await auth.signOut(); // Faz o logout no Firebase
+      window.location.href = "/login"; // Redireciona para a página de login
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
   };
 
   return (
@@ -19,7 +23,16 @@ const Header = () => {
         <ul className="nav-links">
           <li><a href="/#sobre">Sobre</a></li>
           {user && <li><a href="/nextwalks">Seus Passeios</a></li>}
-          {user && <li><a href="/">Logout</a></li>}
+          {user && (
+            <li>
+              <a href="/" onClick={(e) => {
+                e.preventDefault(); // Evita o comportamento padrão do link
+                handleLogout(); // Chama a função de logout
+              }}>
+                Logout
+              </a>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
